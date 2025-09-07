@@ -37,3 +37,12 @@ h2{text-align:center;color:#00ffc8;font-size:2.5rem;margin-bottom:2rem;}
 .details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;text-align:center;}
 .detail-item{background:#1e1e1e;padding:1.5rem;border-radius:10px;}
 
+/* Rules Flip Cards */
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;}
+.flip-card{perspective:1000px;}
+.flip-inner{position:relative;width:100%;height:150px;transform-style:preserve-3d;transition:transform .6s;}
+.flip-card:hover .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;backface-visibility:hidden;width:100%;height:100%;display:flex;align-items:center;justify-content:center;border-radius:10px;padding:1rem;}
+.flip-front{background:#00ffc8;color:#121212;font-weight:700;}
+.flip-back{background:#222;color:#fff;transform:rotateY(180deg);}
+
