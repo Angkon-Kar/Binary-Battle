@@ -14,3 +14,16 @@ header nav ul li a{color:#e0e0e0;text-decoration:none;text-transform:uppercase;t
 header nav ul li a:hover{color:#00ffc8;}
 .hamburger-menu{display:none;background:none;border:none;color:#00ffc8;font-size:2rem;cursor:pointer;}
 
+/* Hero */
+.hero{position:relative;height:100vh;background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('hero_bg.jpg') no-repeat center/cover;display:flex;align-items:center;justify-content:center;text-align:center;}
+.hero-content h1{
+	font-size:4.5rem;
+	background:-webkit-linear-gradient(#00ffc8,#00b386);
+	-webkit-background-clip:text;
+	background-clip:text;
+	-webkit-text-fill-color:transparent;
+}
+.typing-text{font-size:1.5rem;color:#a0a0a0;border-right:2px solid #00ffc8;white-space:nowrap;overflow:hidden;width:0;animation:typing 4s steps(30,end) forwards, blink .8s infinite;}
+#countdown{margin:1rem 0;font-size:1.2rem;color:#00ffc8;}
+.scroll-down{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:2rem;color:#00ffc8;animation:bounce 2s infinite;}
+
