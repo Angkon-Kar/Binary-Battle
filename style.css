@@ -33,3 +33,7 @@ header nav ul li a:hover{color:#00ffc8;}
 .dark-section{background:#1e1e1e;}
 h2{text-align:center;color:#00ffc8;font-size:2.5rem;margin-bottom:2rem;}
 
+/* About */
+.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;text-align:center;}
+.detail-item{background:#1e1e1e;padding:1.5rem;border-radius:10px;}
+
