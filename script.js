@@ -1,6 +1,6 @@
 // ---------- CONFIG ----------
 // MAKE SURE TO UPDATE THIS URL WITH YOUR NEW DEPLOYMENT URL
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyzBxnOZoli7mwFCYhhEqXVhW_chCC5a2dtcmqqvihEkZt0jbRkIza2Uj8Z8W0Mcc4t/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyzpLVbyhEB3N-umW5xt7MIU1enoVfDDwfMIvOMJ3xV5OG3kLqmWoJd1LOHmC2tnzHD/exec";
 
 document.addEventListener('DOMContentLoaded', () => {
 
