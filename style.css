@@ -46,3 +46,44 @@ h2{text-align:center;color:#00ffc8;font-size:2.5rem;margin-bottom:2rem;}
 .flip-front{background:#00ffc8;color:#121212;font-weight:700;}
 .flip-back{background:#222;color:#fff;transform:rotateY(180deg);}
 
+
+/* T-shirt */
+.tshirt-demo img{max-width:400px;border-radius:10px;box-shadow:0 0 20px rgba(0,255,200,.3);animation:float 4s ease-in-out infinite;cursor:pointer;}
+.tshirt-demo p{margin-top:1.5rem;color:#a0a0a0;text-align:center;max-width:600px;}
+
+/* Lightbox */
+#lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;z-index:3000;}
+#lightbox img{max-width:90%;max-height:80%;border:2px solid #00ffc8;border-radius:10px;}
+#close-lightbox{position:absolute;top:20px;right:40px;font-size:2rem;color:#fff;cursor:pointer;}
+
+/* Register */
+.register-container{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;}
+.link-item{background:#1e1e1e;padding:2rem;border-radius:10px;max-width:400px;text-align:center;}
+.glowing-box{box-shadow:0 0 10px rgba(0,255,200,.4);}
+.qr-code{margin-top:1rem;max-width:100px;}
+
+/* Footer */
+footer{background:#0d0d0d;padding:2rem;text-align:center;color:#a0a0a0;}
+.social-icons a{margin:0 .5rem;color:#a0a0a0;font-size:1.5rem;transition:.3s;}
+.social-icons a:hover{color:#00ffc8;}
+
+/* Back to Top */
+#backToTop{position:fixed;bottom:20px;right:20px;background:#00ffc8;color:#121212;border:none;padding:.7rem 1rem;border-radius:50%;cursor:pointer;display:none;z-index:1500;}
+#backToTop:hover{box-shadow:0 0 10px #00ffc8;}
+
+/* Animations */
+@keyframes typing{to{width:100%;}}
+@keyframes blink{50%{border-color:transparent;}}
+@keyframes bounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,-10px);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;text-shadow:0 0 10px #00ffc8;}20%,24%,55%{opacity:.6;text-shadow:none;}}
+
+/* Mobile */
+@media(max-width:768px){
+  header nav{display:none;position:absolute;top:60px;left:0;width:100%;background:#1e1e1e;flex-direction:column;}
+  header nav.active{display:flex;}
+  .hamburger-menu{display:block;}
+  .hero-content h1{font-size:2.5rem;}
+  .typing-text{font-size:1rem;}
+  h2{font-size:2rem;}
+}
