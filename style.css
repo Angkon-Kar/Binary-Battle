@@ -1,0 +1,7 @@
+/* General Reset */
+*{margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Poppins',sans-serif;background:#121212;color:#e0e0e0;overflow-x:hidden;scroll-behavior:smooth;}
+
+/* Scroll Progress */
+.scroll-progress {position:fixed;top:0;left:0;height:5px;background:#00ffc8;width:0%;z-index:2000;}
+
