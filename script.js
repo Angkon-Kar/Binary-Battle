@@ -114,11 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbwNe_xlRA1vF7r1M45N7AEwhbnNDgPxTOCJBtz1gVycFeONwYASagtdR-s-tZVeHNZY/exec", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+        const res = await fetch('https://script.google.com/macros/s/AKfycbwNe_xlRA1vF7r1M45N7AEwhbnNDgPxTOCJBtz1gVycFeONwYASagtdR-s-tZVeHNZY/exec', {
+        method: 'POST',
+        body: new FormData(form)
+        })
         const data = await res.json();
         if (data.result === "success") {
           formMsg.style.color = "lightgreen";
