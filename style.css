@@ -35,12 +35,12 @@ nav ul li a:hover{color:#00ffc8}
 /* ========== Hero ========== */
 .hero{
   position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)), url('assets/hero_bg.jpg') center/cover no-repeat;
+  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)), url('assets/bg.jpg') center/cover no-repeat;
 }
 .hero-content h1{
   font-family:'Roboto Mono',monospace;font-size:4.5rem;margin-bottom:.5rem;letter-spacing:4px;background:-webkit-linear-gradient(#00ffc8,#00b386);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent
 }
-.typing-text{font-size:1.2rem;color:#a0a0a0;border-right:2px solid #00ffc8;white-space:nowrap;overflow:hidden;width:0;animation:typing 3.5s steps(30,end) forwards, blink .8s infinite}
+.typing-text{font-size:1.2rem;color:#00ffc8;border-right:2px solid #00ffc8;white-space:nowrap;overflow:hidden;width:0;animation:typing 3.5s steps(30,end) forwards, blink .8s infinite}
 #countdown{color:#00ffc8;margin-top:1rem;font-weight:700}
 .cta-button{display:inline-block;margin-top:1rem;background:#00ffc8;color:#121212;padding:.8rem 2rem;border-radius:40px;text-decoration:none;font-weight:700;position:relative;overflow:hidden;transition:transform .2s}
 .cta-button:hover{transform:translateY(-3px)}
