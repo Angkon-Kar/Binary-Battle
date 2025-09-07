@@ -5,3 +5,12 @@ body {font-family:'Poppins',sans-serif;background:#121212;color:#e0e0e0;overflow
 /* Scroll Progress */
 .scroll-progress {position:fixed;top:0;left:0;height:5px;background:#00ffc8;width:0%;z-index:2000;}
 
+/* Header */
+header {background:#1e1e1e;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;}
+header .logo {color:#00ffc8;font-size:1.8rem;font-weight:700;animation:flicker 3s infinite;}
+header nav ul {display:flex;list-style:none;}
+header nav ul li{margin-left:2rem;}
+header nav ul li a{color:#e0e0e0;text-decoration:none;text-transform:uppercase;transition:.3s;}
+header nav ul li a:hover{color:#00ffc8;}
+.hamburger-menu{display:none;background:none;border:none;color:#00ffc8;font-size:2rem;cursor:pointer;}
+
