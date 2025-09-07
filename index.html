@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Binary Battle</title>
+  <title>Binary Battle: The Coding Colosseum</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="assets/Binarybattle.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <!-- Particles background -->
+
+  <!-- Interactive Particles Background -->
   <div id="tsparticles"></div>
+
+  <!-- Scroll Progress Bar -->
   <div class="scroll-progress"></div>
 
-  <!-- HEADER -->
   <header>
     <div class="logo">Binary Battle</div>
     <nav>
@@ -30,126 +31,127 @@
     <button class="hamburger-menu">☰</button>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h1>Binary Battle</h1>
       <p class="typing-text">The Ultimate Coding Colosseum</p>
-      <div id="countdown">Loading countdown...</div>
+      <div id="countdown"></div>
       <a href="#register" class="cta-button">Register Now</a>
     </div>
     <div class="scroll-down"><i class="fas fa-angle-down"></i></div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about" class="section">
     <div class="container">
       <h2>About the Contest</h2>
-      <p>Join us for <strong>Binary Battle</strong>, an epic programming contest where logic and speed are your greatest weapons. Compete, learn, and win exciting prizes!</p>
+      <p>Join us for <strong>Binary Battle</strong>, an epic programming contest where logic and speed are your greatest weapons. Compete against the best minds and solve complex problems under pressure. This is your chance to showcase your skills, learn from the best, and win exciting prizes!</p>
       <div class="details-grid">
-        <div class="detail-item"><h3>Date</h3><p>October 20, 2025</p></div>
-        <div class="detail-item"><h3>Time</h3><p>10:00 AM - 02:00 PM</p></div>
-        <div class="detail-item"><h3>Venue</h3><p>College Auditorium</p></div>
+        <div class="detail-item">
+          <h3>Date</h3>
+          <p>October 20, 2025</p>
+        </div>
+        <div class="detail-item">
+          <h3>Time</h3>
+          <p>10:00 AM - 02:00 PM</p>
+        </div>
+        <div class="detail-item">
+          <h3>Venue</h3>
+          <p>College Auditorium</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- RULES -->
   <section id="rules" class="section dark-section">
     <div class="container">
       <h2>Contest Rules</h2>
       <div class="rules-grid">
-        <div class="flip-card"><div class="flip-inner"><div class="flip-front">Rule 1</div><div class="flip-back">Participants can only compete individually.</div></div></div>
-        <div class="flip-card"><div class="flip-inner"><div class="flip-front">Rule 2</div><div class="flip-back">Use of any online resources is prohibited during the contest.</div></div></div>
-        <div class="flip-card"><div class="flip-inner"><div class="flip-front">Rule 3</div><div class="flip-back">Solutions must be submitted in Valid Language</div></div></div>
-        <div class="flip-card"><div class="flip-inner"><div class="flip-front">Rule 4</div><div class="flip-back">All decisions by the judges are final.</div></div></div>
-        <div class="flip-card"><div class="flip-inner"><div class="flip-front">Rule 5</div><div class="flip-back">Plagiarism will result in immediate disqualification.</div></div></div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">Rule 1</div>
+            <div class="flip-back">Participants can compete individually or in teams of two.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">Rule 2</div>
+            <div class="flip-back">Use of any online resources is prohibited during the contest.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">Rule 3</div>
+            <div class="flip-back">Solutions must be submitted in C++, Java, or Python.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">Rule 4</div>
+            <div class="flip-back">All decisions by the judges are final.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">Rule 5</div>
+            <div class="flip-back">Plagiarism will result in immediate disqualification.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- T-SHIRT -->
   <section id="tshirt" class="section">
     <div class="container">
       <h2>Exclusive T-shirt Demo</h2>
       <div class="tshirt-demo">
-        <img src="assets/commingsoon.jpg" alt="Binary Battle T-shirt" loading="lazy">
-        <p>Stand out in the crowd with our exclusive <strong>Binary Battle</strong> T-shirt. Premium black tee with Code Vibe.</p>
+        <img src="tshirt_demo.png" alt="Binary Battle T-shirt" loading="lazy">
+        <p>Stand out in the crowd with our exclusive <strong>Binary Battle</strong> T-shirt. A premium black T-shirt featuring a unique binary-themed design that represents the true spirit of coding.</p>
       </div>
     </div>
   </section>
 
-  <!-- REGISTER -->
   <section id="register" class="section dark-section">
     <div class="container">
-      <h2>Registration Form</h2>
-      <p class="form-note">
-        ⚠️ Please Write Down All Correct Information.<br>
-        If you are facing any problem, message here 👉 
-        <a href="https://m.me/angkonkumarkar" target="_blank">Angkon</a>
-      </p>
-
-      <form id="regForm" class="register-form">
-        <div class="form-grid">
-          <label>Name*<input type="text" name="name" required></label>
-          <label>Batch*<input type="text" name="batch" required></label>
-          <label>Department*<input type="text" name="department" required></label>
-          <label>Email*<input type="email" name="email" required></label>
-          <label>T-shirt Size*
-            <select name="tshirt" required>
-              <option value="">--Select--</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-              <option value="2XL">2XL</option>
-            </select>
-          </label>
-          <label>Phone Number*<input type="tel" name="phone" required></label>
-
-          <!-- Payment Type -->
-          <label>Payment Method* 
-            <select name="payment" id="paymentMethod" required>
-              <option value="">--Select--</option>
-              <option value="online">Online Payment</option>
-              <option value="cash">Hand Cash via CR</option>
-            </select>
-          </label>
-
-          <!-- Conditional Fields -->
-          <div id="onlineFields" style="display:none">
-            <label>Transaction ID<input type="text" name="transaction"></label>
-            <label>Payment Phone<input type="tel" name="payphone"></label>
-          </div>
-          <div id="cashFields" style="display:none">
-            <label>CR Name<input type="text" name="crname"></label>
-          </div>
+      <h2>Registration & Contest Links</h2>
+      <div class="register-container">
+        <div class="link-item glowing-box">
+          <h3>Step 1: Fill the Form</h3>
+          <p>Please fill out the Google Form with accurate details to complete your registration.</p>
+          <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="link-button">Google Form</a>
+          <img src="qr_form.png" alt="QR Code for Form" class="qr-code" loading="lazy">
         </div>
-
-        <div class="form-actions">
-          <button type="submit" class="link-button">Submit Registration</button>
+        <div class="link-item glowing-box">
+          <h3>Step 2: Join the Contest</h3>
+          <p>After filling the form and paying the registration fee, you’ll be assigned as a contester. Use the VJudge link below on contest day.</p>
+          <a href="https://vjudge.net/contest/YOUR_VJUDGE_LINK" target="_blank" class="link-button">VJudge Contest Link</a>
+          <img src="qr_vjudge.png" alt="QR Code for VJudge" class="qr-code" loading="lazy">
         </div>
-        <p id="formMsg" class="form-message"></p>
-      </form>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 Binary Battle. Made with ❤️ by 
-        <a href="https://angkonkar.netlify.app/" target="_blank">Angkon Kar</a>
-      </p>
+      <p>For queries: <strong>contact@binarybattle.com</strong></p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; 2025 Binary Battle. Made with ❤️ by Coding Club</p>
     </div>
   </footer>
 
-  <!-- Back to Top -->
+  <!-- Back to Top Button -->
   <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
   <!-- Lightbox -->
-  <div id="lightbox"><span id="close-lightbox">&times;</span>
-    <img id="lightbox-img" src="" alt="Preview">
+  <div id="lightbox">
+    <span id="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="T-shirt Preview">
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.0.2/tsparticles.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
