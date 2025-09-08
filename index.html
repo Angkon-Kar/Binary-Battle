@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Battle: The Coding Colosseum</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      background: #00ffc8;
+      width: 0%;
+      z-index: 2000;
+    }
+
+    /* Header */
+    header {
+      background: rgba(30, 30, 30, 0.8);
+      backdrop-filter: blur(5px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      transition: background 0.3s;
+    }
+    header .logo {
+      color: #00ffc8;
+      font-size: 1.8rem;
+      font-weight: 700;
+      animation: flicker 3s infinite;
+    }
+    header nav ul {
+      display: flex;
+      list-style: none;
+    }
+    header nav ul li {
+      margin-left: 2rem;
+    }
+    header nav ul li a {
+      color: #e0e0e0;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: .3s;
+    }
+    header nav ul li a:hover {
+      color: #00ffc8;
+      text-shadow: 0 0 5px #00ffc8;
+    }
+    .hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      color: #00ffc8;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: radial-gradient(circle at top left, #2a2a2a, #121212 50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,255,200,0.1), transparent 70%);
+      opacity: 0.5;
+      animation: pulse-glow 5s infinite ease-in-out;
+    }
+    .hero-content h1 {
+      font-size: 4.5rem;
+      background: -webkit-linear-gradient(#00ffc8, #00b386);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0, 255, 200, 0.7);
+    }
+    .typing-text {
+      font-size: 1.5rem;
+      color: #a0a0a0;
+      border-right: 2px solid #00ffc8;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(30, end) forwards, blink .8s infinite;
+    }
+    #countdown {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      color: #00ffc8;
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #00ffc8;
+      animation: bounce 2s infinite;
+    }
+
+    /* Buttons */
+    .cta-button, .link-button {
+      display: inline-block;
+      background: #00ffc8;
+      color: #121212;
+      padding: .8rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: .3s;
+      box-shadow: 0 0 10px rgba(0, 255, 200, 0.4);
+      animation: pulse-button 2s infinite ease-in-out;
+    }
+    .cta-button::before, .link-button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 255, 200, .4), transparent 70%);
+      transform: rotate(30deg);
+      opacity: 0;
+      transition: .3s;
+    }
+    .cta-button:hover::before, .link-button:hover::before {
+      opacity: 1;
+    }
+    .cta-button:hover, .link-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(0, 255, 200, 0.7);
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: .8s;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dark-section {
+      background: #1e1e1e;
+    }
+    h2 {
+      text-align: center;
+      color: #00ffc8;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .section h2 i {
+        margin-right: 0.5rem;
+    }
+
+    /* About & Details */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .detail-item {
+      background: #1e1e1e;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      transition: .3s;
+    }
+    .detail-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 255, 200, 0.2);
+    }
+    .detail-item i {
+        font-size: 2rem;
+        color: #00ffc8;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Why Participate Section */
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    .benefit-card {
+        background: #1e1e1e;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        border: 1px solid #333;
+        transition: .3s;
+    }
+    .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 255, 200, 0.2);
+    }
+    .benefit-card i {
+        font-size: 3rem;
+        color: #00ffc8;
+        margin-bottom: 1rem;
+    }
+    .benefit-card h3 {
+        color: #e0e0e0;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Rules Flip Cards */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .flip-card {
+      perspective: 1000px;
+      transition: transform .3s;
+    }
+    .flip-card:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      transform-style: preserve-3d;
+      transition: transform .6s;
+    }
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      position: absolute;
+      backface-visibility: hidden;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .flip-front {
+      background: #00ffc8;
+      color: #121212;
+      font-weight: 700;
+    }
+    .flip-front i {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .flip-back {
+      background: #222;
+      color: #fff;
+      transform: rotateY(180deg);
+      border: 1px solid #00ffc8;
+    }
+
+    /* T-shirt - Advanced Holographic Effect */
+    .tshirt-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .tshirt-demo .digital-blueprint {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 200, .5);
+      background: #1e1e1e;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00ffc8;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.2rem;
+      text-align: center;
+      transition: .3s;
+    }
+    .digital-blueprint::before,
+    .digital-blueprint::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .digital-blueprint::before {
+      background: linear-gradient(to right, transparent, #00ffc8, transparent);
+      transform: translateX(-100%);
+      animation: scan-line 4s linear infinite;
+    }
+    .digital-blueprint::after {
+        content: 'Binary Code\A Battle Shirt\A A+';
+        white-space: pre-wrap;
+        color: #00ffc8;
+        z-index: 10;
+        animation: glitch 10s infinite;
+        text-shadow: 0 0 5px #00ffc8;
+    }
+    .tshirt-demo .digital-blueprint:hover {
+      box-shadow: 0 0 40px rgba(0, 255, 200, 0.8);
+      transform: scale(1.05);
+    }
+    .tshirt-demo p {
+      margin-top: 1.5rem;
+      color: #a0a0a0;
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Register */
+    .register-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .link-item {
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      border: 1px solid #333;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .link-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 255, 200, 0.2);
+    }
+    .glowing-box {
+      box-shadow: 0 0 10px rgba(0, 255, 200, .4);
+    }
+    .link-item h3 {
+      text-shadow: 0 0 5px #00ffc8;
+    }
+    .link-item .link-button {
+      position: relative;
+      z-index: 1;
+    }
+    .link-item .link-button i {
+        margin-right: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d0d0d;
+      padding: 2rem;
+      text-align: center;
+      color: #a0a0a0;
+    }
+    .social-icons a {
+      margin: 0 .5rem;
+      color: #a0a0a0;
+      font-size: 1.5rem;
+      transition: .3s;
+    }
+    .social-icons a:hover {
+      color: #00ffc8;
+    }
+
+    /* Back to Top */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00ffc8;
+      color: #121212;
+      border: none;
+      padding: .7rem 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      z-index: 1500;
+      box-shadow: 0 0 10px #00ffc8;
+      transition: .3s;
+    }
+    #backToTop:hover {
+      box-shadow: 0 0 20px #00ffc8;
+      transform: translateY(-3px);
+    }
+
+    /* Animations */
+    @keyframes typing {
+      to {
+        width: 100%;
+      }
+    }
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translate(-50%, 0);
+      }
+      50% {
+        transform: translate(-50%, -10px);
+      }
+    }
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px #00ffc8;
+      }
+      20%, 24%, 55% {
+        opacity: .6;
+        text-shadow: none;
+      }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.7; }
+    }
+    @keyframes pulse-button {
+      0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 200, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(0, 255, 200, 0.7); }
+    }
+    @keyframes glitch {
+      0% { content: 'Binary Battle Shirt'; }
+      5% { content: 'Binary Code Battle'; }
+      10% { content: 'Binary Battle Shirt\A A+'; }
+      20% { content: 'Code Challenge'; }
+      25% { content: 'Binary Battle Shirt'; }
+      30% { content: 'Binary Code\A Battle Shirt\A A+'; }
+      100% { content: 'Binary Code\A Battle Shirt\A A+'; }
+    }
+    @keyframes scan-line {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1e1e1e;
+        flex-direction: column;
+      }
+      header nav.active {
+        display: flex;
+      }
+      .hamburger-menu {
+        display: block;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .typing-text {
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Interactive Particles Background -->
+  <div id="tsparticles"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress"></div>
+
+  <header>
+    <div class="logo">Binary Battle</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#why-join">Why Join?</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#tshirt">T-shirt</a></li>
+        <li><a href="#register">Register</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger-menu">☰</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Binary Battle</h1>
+      <p class="typing-text">The Ultimate Coding Colosseum</p>
+      <div id="countdown"></div>
+      <a href="#register" class="cta-button">Register Now</a>
+    </div>
+    <div class="scroll-down"><i class="fas fa-angle-down"></i></div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2><i class="fas fa-info-circle"></i>About the Contest</h2>
+      <p>Join us for <strong>Binary Battle</strong>, an epic programming contest where logic and speed are your greatest weapons. Compete against the best minds and solve complex problems under pressure. This is your chance to showcase your skills, learn from the best, and win exciting prizes!</p>
+      <div class="details-grid">
+        <div class="detail-item">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Date</h3>
+          <p>October 20, 2025</p>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-clock"></i>
+          <h3>Time</h3>
+          <p>10:00 AM - 02:00 PM</p>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Venue</h3>
+          <p>College Auditorium</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-join" class="section dark-section">
+      <div class="container">
+          <h2><i class="fas fa-star-of-life"></i>Why You Should Participate</h2>
+          <div class="benefits-grid">
+              <div class="benefit-card">
+                  <i class="fas fa-brain"></i>
+                  <h3>Sharpen Your Skills</h3>
+                  <p>Solve challenging algorithmic problems and test your logical thinking.</p>
+              </div>
+              <div class="benefit-card">
+                  <i class="fas fa-users"></i>
+                  <h3>Network with Peers</h3>
+                  <p>Connect with fellow coders and build a strong community.</p>
+              </div>
+              <div class="benefit-card">
+                  <i class="fas fa-gift"></i>
+                  <h3>Win Amazing Prizes</h3>
+                  <p>Prove your coding prowess and take home fantastic rewards.</p>
+              </div>
+              <div class="benefit-card">
+                  <i class="fas fa-lightbulb"></i>
+                  <h3>Learn and Grow</h3>
+                  <p>Gain valuable experience that will boost your resume and career.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section id="rules" class="section">
+    <div class="container">
+      <h2><i class="fas fa-gavel"></i>Contest Rules</h2>
+      <div class="rules-grid">
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><i class="fas fa-users"></i>Rule 1</div>
+            <div class="flip-back">Participants can compete individually or in teams of two.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><i class="fas fa-lock"></i>Rule 2</div>
+            <div class="flip-back">Use of any online resources is prohibited during the contest.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><i class="fas fa-terminal"></i>Rule 3</div>
+            <div class="flip-back">Solutions must be submitted in C++, Java, or Python.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><i class="fas fa-trophy"></i>Rule 4</div>
+            <div class="flip-back">All decisions by the judges are final.</div>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front"><i class="fas fa-user-slash"></i>Rule 5</div>
+            <div class="flip-back">Plagiarism will result in immediate disqualification.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tshirt" class="section dark-section">
+    <div class="container">
+      <h2><i class="fas fa-tshirt"></i>Exclusive T-shirt Demo</h2>
+      <div class="tshirt-demo">
+        <div class="digital-blueprint"></div>
+        <p>Stand out in the crowd with our exclusive <strong>Binary Battle</strong> T-shirt. A premium black T-shirt featuring a unique binary-themed design that represents the true spirit of coding.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="register" class="section">
+    <div class="container">
+      <h2><i class="fas fa-user-plus"></i>Registration & Contest Links</h2>
+      <div class="register-container">
+        <div class="link-item glowing-box">
+          <h3>Step 1: Fill the Form</h3>
+          <p>Please fill out the Google Form with accurate details to complete your registration.</p>
+          <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="link-button"><i class="fas fa-clipboard-list"></i>Google Form</a>
+        </div>
+        <div class="link-item glowing-box">
+          <h3>Step 2: Join the Contest</h3>
+          <p>After filling the form and paying the registration fee, you’ll be assigned as a contester. Use the VJudge link below on contest day.</p>
+          <a href="https://vjudge.net/contest/YOUR_VJUDGE_LINK" target="_blank" class="link-button"><i class="fas fa-link"></i>VJudge Contest Link</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>For queries: <strong>contact@binarybattle.com</strong></p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; 2025 Binary Battle. Made with ❤️ by Coding Club</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.0.2/tsparticles.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navMenu = document.querySelector('nav');
+      const sections = document.querySelectorAll('.section');
+      const scrollBar = document.querySelector('.scroll-progress');
+      const backToTop = document.getElementById('backToTop');
+      const countdownEl = document.getElementById('countdown');
+
+      // Hamburger menu
+      hamburgerMenu.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+
+      // Section animations
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+      sections.forEach(section => observer.observe(section));
+
+      // Scroll progress + back to top
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const percent = (scrollTop / docHeight) * 100;
+        scrollBar.style.width = percent + '%';
+        backToTop.style.display = scrollTop > 300 ? 'block' : 'none';
+      });
+      backToTop.addEventListener('click', () => window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      }));
+
+      // Countdown Timer
+      const contestDate = new Date("October 20, 2025 10:00:00").getTime();
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = contestDate - now;
+        if (distance < 0) {
+          countdownEl.innerHTML = "Contest Started!";
+          return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((distance % (1000 * 60)) / 1000);
+        countdownEl.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s left`;
+      }, 1000);
+
+      // Particles.js
+      tsParticles.load("tsparticles", {
+        particles: {
+          number: {
+            value: 80
+          },
+          size: {
+            value: 3
+          },
+          move: {
+            enable: true,
+            speed: 2
+          },
+          links: {
+            enable: true,
+            distance: 150,
+            color: "#00ffc8",
+            opacity: 0.4,
+            width: 1
+          },
+          color: {
+            value: "#00ffc8"
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
